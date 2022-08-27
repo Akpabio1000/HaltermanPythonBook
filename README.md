@@ -1,0 +1,2 @@
+# HaltermanPythonBook
+Solutions to HaltermanPythonbook
