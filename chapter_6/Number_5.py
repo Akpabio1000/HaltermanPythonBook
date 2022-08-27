@@ -13,6 +13,7 @@ email: akpabio15@gmail.com
 
 import random
 import math
+import time
 
 print('Play the game to guess the computer\'s value.')
 print('HINT: COMPUTER\'S VALUE IS BETWEEN 1 AND 100 INCLUSIVE')
@@ -23,15 +24,19 @@ print()
 attempts = trials
    
 for n in range(trials):
+    start_time = time.perf_counter()
+    
     msg1 = 'You have ' + str(attempts - 1) + ' attempts left'
     msg2 = 'You have ' + str(attempts - 1) + ' attempt left'
     msg = msg1 if(attempts - 1 > 1) else msg2
 
     choice = eval(input('Enter guess ' + str(n + 1) + ': '))
     if (choice == computer_value):
+        elapsed_time = time.perf_counter() - start_time
         print('AWESOME! COMPUTER\'S VALUE IS', computer_value)
         print('YOU GUESSED THE COMPUTER\'S VALUE IN '\
               + str(n + 1) + ' moves')
+        print('You used', elapsed_time, 'seconds to guess correctly')
         break
     elif(0 < math.fabs(choice - computer_value) <= 5):
         print('YOUR GUESS IS VERY CLOSE! ', end='')
@@ -57,7 +62,9 @@ for n in range(trials):
     attempts -= 1
     print()
 if(choice != computer_value):
+    elapsed_time = time.perf_counter() - start_time
     print('***GAME OVER***')
+    print('You used', elapsed_time, 'seconds to guess incorrectly')
     print()
     print('COMPUTER\'S VALUE IS', computer_value)
     print('Rerun program to play again')
